@@ -51,7 +51,7 @@ async def set_not_afk(event):
     if "afk" not in current_message and "on" in USERAFK_ON:
         shite = await event.client.send_message(
             event.chat_id,
-            "`Back alive! No Longer afk.\nWas afk for " + endtime + "`",
+            "Il mio master è tornato!\nSei stato afk per " + endtime ,
         )
         USERAFK_ON = {}
         afk_time = None
@@ -61,9 +61,8 @@ async def set_not_afk(event):
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "#AFKFALSE \n`Set AFK mode to False\n"
-                + "Back alive! No Longer afk.\nWas afk for "
-                + endtime
-                + "`",
+                + "Il mio master è tornato!\nSei stato afk per "
+                + endtime,
             )
 
 
@@ -108,13 +107,13 @@ async def on_afk(event):
         msg = None
         if link and reason:
             message_to_reply = (
-                f"**I am AFK .\n\nAFK Since {endtime}\nReason : **{reason}"
+                f"**Il mio master è afk .\n\nAfk da {endtime}\nMotivo : **{reason}"
             )
         elif reason:
-            message_to_reply = f"`I am AFK .\n\nAFK Since {endtime}\nReason : {reason}`"
+            message_to_reply = f"__Il mio master è afk.\n\nAfk da {endtime}\nMotivo: {reason}__"
         else:
             message_to_reply = (
-                f"`I am AFK .\n\nAFK Since {endtime}\nReason : Not Mentioned ( ಠ ʖ̯ ಠ)`"
+                f"Il mio master è afk\nAfk da {endtime}\nMotivo : Non specificato ( ಠ ʖ̯ ಠ)"
             )
         if event.chat_id not in Config.UB_BLACK_LIST_CHAT:
             msg = await event.reply(message_to_reply)
@@ -167,9 +166,9 @@ async def _(event):
             afk_time = datetime.now()
         USERAFK_ON = f"on: {reason}"
         if reason:
-            await edit_delete(event, f"`I shall be Going afk! because ~` {reason}", 5)
+            await edit_delete(event, f"Il mio master è andato afk ~ {reason}", 5)
         else:
-            await edit_delete(event, f"`I shall be Going afk! `", 5)
+            await edit_delete(event, f"Il mio master è andato afk ", 5)
         if BOTLOG:
             if reason:
                 await event.client.send_message(
